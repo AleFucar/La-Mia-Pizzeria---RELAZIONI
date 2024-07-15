@@ -1,0 +1,5 @@
+package it.fucarino.pizzeria.controller;
+
+public class SaldiController {
+
+}

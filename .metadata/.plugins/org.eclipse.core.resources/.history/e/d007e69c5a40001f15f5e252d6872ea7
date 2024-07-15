@@ -1,0 +1,5 @@
+package it.fucarino.pizzeria.model;
+
+public class Saldi {
+
+}

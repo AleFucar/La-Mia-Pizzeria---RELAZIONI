@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+	<title>Pizza</title>
+</head>
+
+<body class="bg-light text-dark">
+	<div class="container text-center">
+	<h1 class="mt-5" th:text="${pizza.name}"></h1>
+	<img class="rounded border border-dark  border-top-0 border-right-0" th:src="${pizza.photo}" alt="Pizza" height="400px" weight="400px">
+	<h4 class="mt-2" th:text="${pizza.description}"></h4>
+	</div>
+	
+	<div th:if="${pizza.saldi.size() > 0}">
+		<table class="container  table table-striped" id="table-saldi">
+			<thead>
+				<tr>
+					<th>NOME</th>
+					<th>DATA INIZIO</th>
+					<th>DATA FINE</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="saldo : ${pizza.saldi}">
+					<td th:text="${saldo.nome}"></td>
+					<td th:text="${saldo.dataInizio}"></td>
+					<td th:text="${saldo.dataFine}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	
+	<div th:if="${pizza.saldi.isEmpty()}" class="container text-center mt-5">
+		<p> Non ci sono saldi al momento </p>
+	
+	
+		<a th:href="@{/pizze/{id}/saldo(id=${pizza.id})}" class="btn btn-primary mt-2">Crea nuova offerta!</a>
+	
+		<a th:href="@{/pizze}" class="btn btn-primary mt-2"> Torna al menu</a>
+	</div>
+	
+</body>
+</html>

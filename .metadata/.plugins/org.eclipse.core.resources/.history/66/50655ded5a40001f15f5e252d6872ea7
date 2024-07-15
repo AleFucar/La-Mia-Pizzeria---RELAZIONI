@@ -1,0 +1,7 @@
+package it.fucarino.pizzeria.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface SaldiRepository extends JpaRepository<id, Integer> {
+
+}
