@@ -1,12 +1,15 @@
 package it.fucarino.pizzeria.model;
 
-import org.hibernate.annotations.Type;
+
+
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -20,6 +23,30 @@ public class Pizza {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
+	@Column(name = "name", nullable = false)
+	@NotBlank(message = "Devi inserire il nome della pizza.")
+	private String name;
+	
+	
+	@Column(name = "description")
+	@NotBlank(message = "Devi inserire una descrizione")
+	private String description;
+	
+	
+	@NotNull(message = "Il prezzo non può essere nullo")
+	@Column(name = "price", nullable = false)
+	private double price;
+	
+	
+	@NotBlank(message = "devi inserire una foto(Link)")
+	@Column(name = "photo")
+	private String photo;
+	
+	
+	@OneToMany(mappedBy = "pizza")
+	private List<Saldi> saldi;
+	
+	
 	public Integer getId() {
 		return id;
 	}
@@ -29,9 +56,6 @@ public class Pizza {
 	}
 
 
-	@Column(name = "name", nullable = false)
-	@NotBlank(message = "Devi inserire il nome della pizza.")
-	private String name;
 	
 	
 	public String getName() {
@@ -43,9 +67,6 @@ public class Pizza {
 	}
 
 
-	@Column(name = "description")
-	@NotBlank(message = "Devi inserire una descrizione")
-	private String description;
 	
 	
 	public String getDescription() {
@@ -56,9 +77,6 @@ public class Pizza {
 		this.description = description;
 	}
 
-	@NotNull(message = "Il prezzo non può essere nullo")
-	@Column(name = "price", nullable = false)
-	private double price;
 
 	
 	public double getPrice() {
@@ -69,9 +87,6 @@ public class Pizza {
 		this.price = price;
 	}
 	
-	@NotBlank(message = "devi inserire una foto(Link)")
-	@Column(name = "photo")
-	private String photo;
 
 	
 	public String getPhoto() {
@@ -81,4 +96,14 @@ public class Pizza {
 	public void setPhoto(String photo) {
 		this.photo = photo;
 	}
+
+	public List<Saldi> getSaldi() {
+		return saldi;
+	}
+
+	public void setSaldi(List<Saldi> saldi) {
+		this.saldi = saldi;
+	}
+	
+	
 }
