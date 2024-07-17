@@ -25,9 +25,6 @@ public class PizzaController {
 	@Autowired
 	private PizzaRepository pizzaRepository;
 	
-	@Autowired 
-	private SaldiRepository saldiRepository;
-	
 	
 	@GetMapping("/pizze")
 	public String index(Model model) {
