@@ -12,5 +12,40 @@
 	<img class="rounded border border-dark  border-top-0 border-right-0" th:src="${pizza.photo}" alt="Pizza" height="400px" weight="400px">
 	<h4 class="mt-2" th:text="${pizza.description}"></h4>
 	</div>
+	
+	<div th:if="${pizza.saldi.size() > 0}">
+		<table class="container  table table-striped" id="table-saldi">
+			<thead>
+				<tr>
+					<th>NOME</th>
+					<th>DATA INIZIO</th>
+					<th>DATA FINE</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="saldo : ${pizza.saldi}">
+					<td th:text="${saldo.nome}"></td>
+					<td th:text="${saldo.dataInizio}"></td>
+					<td th:text="${saldo.dataFine}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	
+	<div th:if="${pizza.saldi.isEmpty()}" class="container text-center mt-5">
+		<p> Non ci sono saldi al momento </p>
+	
+	
+		<a th:href="@{/pizze/{id}/saldi(id=${pizza.id})}" class="btn btn-primary mt-2">Crea nuova offerta!</a>
+	
+	</div>
+	
+	<div class="container text-center mt-5">
+		
+		<a th:href="@{/pizze/{id}/saldi(id=${pizza.id})}" class="btn btn-primary mt-2">Aggiungi nuova offerta!</a>
+		<a th:href="@{/pizze}" class="btn btn-primary mt-2"> Torna al menu</a>
+		
+	</div>
+	
 </body>
 </html>

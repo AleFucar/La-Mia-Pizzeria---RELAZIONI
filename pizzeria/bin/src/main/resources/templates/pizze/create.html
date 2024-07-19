@@ -23,6 +23,15 @@
 				</ul>
 			</div>
 
+			
+			<p class="mt-3">Inserisci gli ingredienti</p>
+			
+			<th:block th:each="ingrediente : ${dbIngredienti}">
+				<input type="checkbox" name="ingrediente" th:value="${ingrediente.id}" th:field="*{ingredienti}">
+				<label th:text="${ingrediente.name}"></label>
+			</th:block>
+			
+			
 			<label for="description" class="form-label">Descrizione</label>
 			<input type="text" id="description" class="form-control" th:field="*{description}">
 			<div th:if="${#fields.hasErrors('description')}" class="invalid-feedback">

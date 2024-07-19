@@ -10,6 +10,22 @@
 	<div class="container text-center">
 	<h1 class="mt-5" th:text="${pizza.name}"></h1>
 	<img class="rounded border border-dark  border-top-0 border-right-0" th:src="${pizza.photo}" alt="Pizza" height="400px" weight="400px">
+	
+	
+	<div class=" card container text-center mt-4" style="width: 18rem;">
+		<div class="card-header">
+		   Ingredienti
+		 </div>
+		<ul class="list-group list-group-flush">
+			<li class="list-group-item" th:each="ingrediente : ${pizza.ingredienti}" th:text="${ingrediente.name}">
+
+			</li>
+		</ul>
+		
+		
+	</div>
+	
+	
 	<h4 class="mt-2" th:text="${pizza.description}"></h4>
 	</div>
 	
@@ -39,6 +55,8 @@
 		<a th:href="@{/pizze/{id}/saldi(id=${pizza.id})}" class="btn btn-primary mt-2">Crea nuova offerta!</a>
 	
 	</div>
+	
+	
 	
 	<div class="container text-center mt-5">
 		
