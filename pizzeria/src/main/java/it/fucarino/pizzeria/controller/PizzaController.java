@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import it.fucarino.pizzeria.model.Pizza;
 import it.fucarino.pizzeria.model.Saldi;
+import it.fucarino.pizzeria.repository.IngredientiRepository;
 import it.fucarino.pizzeria.repository.PizzaRepository;
 import it.fucarino.pizzeria.repository.SaldiRepository;
 import jakarta.validation.Valid;
@@ -24,6 +25,12 @@ public class PizzaController {
 	
 	@Autowired
 	private PizzaRepository pizzaRepository;
+	
+	@Autowired
+	private SaldiRepository saldiRepository;
+	
+	@Autowired
+	private IngredientiRepository ingredientiRepository;
 	
 	
 	@GetMapping("/pizze")
@@ -48,6 +55,7 @@ public class PizzaController {
 	public String create(Model model) {
 		
 		model.addAttribute("pizza", new Pizza());
+		model.addAttribute("dbIngredienti", ingredientiRepository.findAll());
 		
 		return"/pizze/create";
 	}
@@ -59,6 +67,7 @@ public class PizzaController {
 			}
 			
 			pizzaRepository.save(formPizza);
+
 			
 			return"redirect:/pizze";
 	}
